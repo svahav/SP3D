@@ -1,3 +1,18 @@
 <template>
-    
+  <c-sp3d-announcement></c-sp3d-announcement>
+  <div class="sp3d-container">
+    <c-sp3d-header cart-count={cartCount} onsearchchange={handleSearch} oncartclick={openCart}></c-sp3d-header>
+    <c-sp3d-product-grid products={products} onaddtocart={handleAddToCart}></c-sp3d-product-grid>
+  </div>
+
+  <c-sp3d-cart-sheet open={isCartOpen}
+                     items={cart}
+                     total={total}
+                     onclose={closeCart}
+                     onqtychange={handleQtyChange}
+                     onremoveitem={handleRemove}
+                     oncheckout={handleCheckout}>
+  </c-sp3d-cart-sheet>
+
+  <c-sp3d-footer></c-sp3d-footer>
 </template>
