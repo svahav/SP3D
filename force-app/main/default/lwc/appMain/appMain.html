@@ -1,0 +1,28 @@
+<template>
+            <c-menu-component onnavigation={handleNavigation} onaddtocart={handleAddToCart} cart-items={cartItems} order-placed={orderPlaced} ></c-menu-component>
+            <c-hamburger-menu onnavigation={handleNavigation}></c-hamburger-menu>
+            <template if:true={isHomePage}>
+                <c-home-page></c-home-page>
+            </template>
+            <template if:true={isMenuPage}>
+                <c-menu-page is-ta-page={isTAPage} onaddtocart={handleAddToCart}></c-menu-page>
+            </template>
+            <template if:true={isCartPage}>
+                <c-cart-page cart-items={cartItems} onorderplaced={handleOrderPlaced} ></c-cart-page>
+            </template>
+            <template if:true={isMusicPage}>
+                <c-music-page></c-music-page>
+            </template>
+            <template if:true={isTAPage}>
+                <c-ta-page is-ta-page={isTAPage}></c-ta-page>
+            </template>
+            <template if:true={isLaptopPage}>
+                <c-quiet-garden-gallery></c-quiet-garden-gallery>
+            </template>
+            <template if:true={isGallery}>
+                <c-gallery-page></c-gallery-page>
+              </template>
+            <template if:true={isAboutUsPage}>
+                <c-about-us-page></c-about-us-page>
+            <c-footer></c-footer>
+</template>

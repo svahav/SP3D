@@ -1,0 +1,38 @@
+<template>
+    <div class="wheel-container">
+        <!-- מחט (שומרת על מיקום קבוע) -->
+        <div class="pointer"></div>
+
+        <!-- גלגל המזל -->
+        <div class="wheel-wrapper">
+            <svg class="wheel" viewBox="0 0 900 900" style="transform: rotate(0deg);">
+                <template for:each={segments} for:item="segment">
+                    <path key={segment.index} d={segment.d} fill={segment.color}  stroke="white" stroke-width="2"></path>
+                    <text key={segment.keyText} x={segment.textX} y={segment.textY} 
+                    text-anchor="middle" dominant-baseline="middle" font-size="2.5rem" fill="white"
+                    transform={segment.textTransform}>
+                    {segment.prize}
+                </text>
+                </template>
+
+                <!-- עיגול מרכזי של הגלגל -->
+                <circle cx="450" cy="450" r="50" fill="#F5DEB3" stroke="#A67B5B" stroke-width="5"></circle>
+                <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="24px" fill="black">
+                    🎡
+                </text>
+            </svg>
+        </div>
+
+        <!-- כפתור סיבוב -->
+        <button class="spin-button" onclick={spinWheel} disabled={isSpinning}>
+            {buttonLabel}
+        </button>
+
+        <!-- הצגת התוצאה -->
+        <template if:false={dontShowWinning}>
+            <div class="result">
+                🎉{selectedPrize} - זכית ב
+            </div>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,16 @@
+<template>
+  <div class="card">
+    <div style="position:relative">
+      <img src={product.imageUrl} alt={product.name}/>
+      <span if:true={product.isNewFlag} class="badge-new">NEW</span>
+    </div>
+    <div class="body">
+      <div class="title">{product.name}</div>
+      <div class="price">₪{price}</div>
+      <div class="actions">
+        <button class="btn" onclick={add}>הוסף לסל</button>
+        <button class="btn secondary" onclick={details}>פרטים</button>
+      </div>
+    </div>
+  </div>
+</template>

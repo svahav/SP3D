@@ -1,0 +1,349 @@
+.wrapper {
+  background-color: #EFEDD8;
+  padding: 2rem;
+  border-radius: 12px;
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: auto;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+
+.tab-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem; /* מוסיף רווחים אחידים בין כפתורים */
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+
+.tab-button {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #ddd8c4;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.tab-button.active {
+  background-color: #bfb89d;
+  font-weight: bold;
+}
+
+
+.name-input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 1.5rem;
+}
+.menu-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.menu-dropdown {
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.add-button {
+  background-color: #c6bfa3;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.add-button:hover {
+  background-color: #b7af95;
+}
+
+.section-label {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.tab-name {
+  color: #5a513c;
+}
+.menu-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f6ea;
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+.menu-label {
+  font-weight: bold;
+  flex: 1;
+}
+
+.menu-price {
+  margin: 0 1rem;
+}
+
+.menu-add {
+  background-color: #d6d1bc;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.selected-list {
+  list-style: none;
+  padding: 0;
+}
+
+.selected-list li {
+  background-color: #fff;
+  padding: 0.5rem;
+  margin-bottom: 0.25rem;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.submit-button {
+  background-color: #a69875;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.order-summary {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+
+.summary-title {
+  text-align: center;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.order-table th,
+.order-table td {
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem;
+  text-align: right;
+}
+
+.totals {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.reset-button {
+  background-color: #d65c5c;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.floating-submit {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: #f4f1e1;
+  padding: 1rem;
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
+  font-family: Arial, sans-serif;
+}
+
+.floating-submit button {
+  background-color: #9a7b4f;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.floating-selected-preview {
+  position: sticky;
+  top: 0;
+  background-color: #f4f1e1;
+  padding: 1rem;
+  z-index: 900;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-bottom: 1px solid #ddd;
+}
+
+.inline-preview-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+}
+
+.inline-preview-list li {
+  font-size: 0.9rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px dashed #ccc;
+}
+.floating-selected-preview {
+  position: sticky;
+  top: 0;
+  background-color: #f4f1e1;
+  padding: 1rem;
+  z-index: 10;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.inline-preview-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.inline-preview-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed #ccc;
+  padding: 4px 0;
+}
+
+.inline-preview-list button {
+  background: #eee;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.floating-summary-button {
+  position: fixed;
+  bottom: 90px;
+  left: 16px;
+  z-index: 999;
+  background: #de5959;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.summary-button-wrapper {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.summary-button-wrapper button {
+  background-color: #de5959;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.back-button-wrapper {
+  margin: 1rem 0;
+  text-align: left;
+}
+
+.back-button-wrapper button {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.manual-price-input {
+  width: 80px;
+  padding: 6px 10px;
+  font-size: 1rem;
+  font-family: 'Varela Round', sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fdfaf4; /* גוון רך שמשתלב עם antique white */
+  color: #333;
+  text-align: center;
+  direction: rtl;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  transition: border-color 0.3s;
+}
+
+.manual-price-input:focus {
+  border-color: #6c5ce7;
+  outline: none;
+}
+
+.families-summary {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-top: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.families-summary ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.families-summary li {
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding: 3rem;
+  }
+
+  .title {
+    font-size: 28px;
+  }

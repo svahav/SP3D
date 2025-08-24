@@ -1,0 +1,51 @@
+<template>
+  <div class="menu-section">
+
+    <!-- סיכום מנות שנבחרו -->
+    <template if:true={selectedItems.length}>
+      <div class="floating-selected-preview">
+        <span class="preview-title">מנות שנבחרו:</span>
+        <ul class="inline-preview-list">
+          <template for:each={selectedItems} for:item="i">
+            <li key={i.id}>
+              {i.label} – ₪{i.price}
+              <button data-id={i.id} onclick={handleRemove}>X</button>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </template>
+
+    <h2 class="section-title">בחר מנות מתוך: {tabName}</h2>
+    
+    <!-- כל הקטגוריות -->
+    <template for:each={processedMenu} for:item="category">
+      <div key={category.key}>
+        <h3 class="menu-category-title">{category.label}</h3>
+
+        <template for:each={category.items} for:item="item">
+          <div key={item.label} class="menu-item">
+            <span class="menu-label">{item.label}</span>
+            <template if:true={item.price}>
+              <span class="menu-price">₪{item.price}</span>
+              <button class="menu-add" data-label={item.label} onclick={handleAdd}>הוסף</button>
+            </template>
+            <template if:false={item.price}>
+              <input type="number" placeholder="₪ מחיר" class="manual-price-input" data-label={item.label} oninput={handlePriceInput} />
+              <button class="menu-add" data-label={item.label} onclick={handleAddWithManualPrice}>הוסף</button>
+            </template>
+          </div>
+        </template>
+      </div>
+    </template>
+
+    <!-- כפתור סיום -->
+    <template if:true={selectedItems.length}>
+      <div class="floating-submit">
+        <span>סה״כ ₪{totalPrice}</span>
+        <button onclick={handleSubmit}>סיים את ההזמנה</button>
+      </div>
+    </template>
+
+  </div>
+</template>

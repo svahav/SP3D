@@ -1,0 +1,63 @@
+<template>
+  <lightning-card title="Smart List View">
+    <div class="slds-p-around_medium">
+      <!-- בחירת אובייקט -->
+      <lightning-combobox
+        label="בחר אובייקט"
+        value={selectedObject}
+        options={objectOptions}
+        onchange={handleObjectChange}>
+      </lightning-combobox>
+
+      <!-- כפתור להוספת שדות -->
+      <template if:true={selectedObject}>
+        <lightning-button
+          label="הוסף שדות"
+          icon-name="utility:add"
+          class="slds-m-top_medium"
+          onclick={openFieldModal}>
+        </lightning-button>
+      </template>
+
+      <!-- טבלת נתונים -->
+      <template if:true={records}>
+        <lightning-datatable
+          key-field="Id"
+          data={records}
+          columns={columns}>
+        </lightning-datatable>
+      </template>
+    </div>
+  </lightning-card>
+
+  <!-- מודל בחירת שדות -->
+  <template if:true={isModalOpen}>
+    <section role="dialog" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container">
+        <header class="slds-modal__header">
+          <h2 class="slds-text-heading_medium">בחר שדות</h2>
+        </header>
+        <div class="slds-modal__content slds-p-around_medium">
+  <template for:each={preparedFields} for:item="field">
+  <div key={field.fullValue} class={field.cssClass}>
+    <lightning-input
+      type="checkbox"
+      label={field.label}
+      data-id={field.fullValue}
+      checked={field.checked}
+      onchange={handleToggleField}>
+    </lightning-input>
+  </div>
+</template>
+
+
+        </div>
+        <footer class="slds-modal__footer">
+          <lightning-button label="ביטול" onclick={closeModal}></lightning-button>
+          <lightning-button variant="brand" label="אישור" onclick={applySelectedFields}></lightning-button>
+        </footer>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+  </template>
+</template>

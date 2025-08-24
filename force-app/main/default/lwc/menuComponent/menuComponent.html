@@ -1,0 +1,18 @@
+<template>
+    <div class="navbar">
+        <img src={logoUrl} alt="Logo" class="logo" onclick={navigateToHome} />
+            <ul class="nav-links">
+                <li onclick={navigateToHome}>דף הבית</a></li>
+                <li onclick={navigateToMenu} class="nav-link">תפריט</a></li>
+                <li onclick={navigateToCart} class="nav-link cart-icon-container">
+                    🛒
+                    <template if:true={showCartBadge}>
+                    <template if:true={cartTotalQuantity}>
+                        <span class="cart-badge">{cartTotalQuantity}</span>
+                    </template>
+                    </template>
+                </li>
+            </ul>
+   
+    </div>
+</template>

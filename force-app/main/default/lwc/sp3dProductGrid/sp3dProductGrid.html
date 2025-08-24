@@ -1,0 +1,7 @@
+<template>
+  <div class="grid">
+    <template for:each={products} for:item="p">
+      <c-sp3d-product-card key={p.id} product={p} onadd={add}></c-sp3d-product-card>
+    </template>
+  </div>
+</template>

@@ -1,0 +1,47 @@
+<template>
+    <div class="menu-wrapper">
+        <div class={menuContainerClass}>
+            <template for:each={filteredMenuSections} for:item="section">
+                <div key={section.title} class="menu-section">
+                    <h2 class="menu-title">{section.title}</h2>
+                    <ul class="menu-list">
+                        <template for:each={section.items} for:item="item">
+                            <li  key={item.id} class="menu-item" data-id={item.id} onclick={openPopup}>
+                                <div class="menu-row">
+                                    <span class="coffee-name">{item.name}</span>
+                                    <span class="coffee-price">{item.price} ₪</span>
+                                </div>
+                                <p class="item-description">{item.description}</p>
+
+                                <!-- הצגת כפתורי הוספה עגלה רק אם זה עמוד TA -->
+                                <template if:true={isTaPage}>
+                                    <div class="quantity-buttons">
+                                       <div class="quantity-button">
+
+                                    <button data-id={item.id} onclick={handleDecreaseQuantity} onmousedown={stopPropagation}>-</button>
+                                    
+                                {item.quantity}
+                                    <button data-id={item.id} onclick={handleIncreaseQuantity} onmousedown={stopPropagation}>+</button>
+                                    </div>
+                                    <button data-id={item.id} onclick={addToCart} onmousedown={stopPropagation}>עדכן עגלה</button>
+                                    </div>
+                                </template>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </template>
+        </div>
+    </div>
+    <!-- פופ-אפ תמונה -->
+    <template if:true={selectedItem}>
+        <div class="popup-overlay" onclick={closePopup}>
+            <div class="popup-content" onclick={stopPropagation}>
+                <span class="popup-close" onclick={closePopup}>&times;</span>
+                <img src={selectedItem.image} alt={selectedItem.name} class="popup-image">
+                <h2>{selectedItem.name}</h2>
+                <p>{selectedItem.details}</p>
+            </div>
+        </div>
+    </template>
+</template>

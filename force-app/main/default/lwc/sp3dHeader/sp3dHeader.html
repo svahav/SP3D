@@ -1,0 +1,11 @@
+<template>
+  <div class="header">
+    <div class="logo">SP3D</div>
+    <div class="search">
+      <input type="search" placeholder="חיפוש מוצר…" oninput={onInput}/>
+    </div>
+    <div class="cart" onclick={cartClick} title="סל קניות">
+      🛒 <span if:true={has} class="badge">{cartCount}</span>
+    </div>
+  </div>
+</template>
