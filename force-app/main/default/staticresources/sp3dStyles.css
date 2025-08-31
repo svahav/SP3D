@@ -1,0 +1,294 @@
+/* =========================
+   SP3D – Mobile-First Design
+   ========================= */
+
+/* 0) Variables & base */
+:root{
+  /* Brand */
+  --bg:#EFEDD8;            /* Antique-like, תואם לעיצוב שלך */
+  --text:#1B2242;          /* Navy SP3D */
+  --muted:#6B7280;
+  --accent:#1B2242;        /* כפתורים/קישורים */
+  --chip:#E8EEFC;          /* Announcement */
+  --card:#FFFFFF;
+
+  /* Layout */
+  --container:1200px;
+  --radius-xxs:8px;
+  --radius-xs:12px;
+  --radius:16px;
+  --radius-lg:20px;
+
+  /* Elevation */
+  --shadow-sm:0 3px 10px rgba(0,0,0,.06);
+  --shadow:0 8px 24px rgba(0,0,0,.08);
+  --shadow-lg:0 18px 40px rgba(0,0,0,.12);
+
+  /* Spacing */
+  --gap-1:8px; --gap-2:12px; --gap-3:16px; --gap-4:20px;
+}
+
+html,body{margin:0;padding:0;height:100%;background:#ffffff;color:var(--text)}
+*{box-sizing:border-box}
+
+/* טיפוגרפיה ניטרלית וקריאה לעברית/אנגלית */
+body{
+  font: 400 16px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans Hebrew","Noto Sans", Arial, "Apple Color Emoji","Segoe UI Emoji";
+  direction: rtl;
+}
+
+/* פוקוס נגיש */
+:where(a,button,input,select,textarea):focus-visible{
+  outline: 2px solid #4B7BFF;
+  outline-offset: 2px;
+}
+
+/* אנימציות עדינות – יכובו בהעדפת Reduced Motion */
+@media (prefers-reduced-motion: reduce){
+  *{animation: none!important; transition: none!important}
+}
+
+/* 1) Container */
+.sp3d-container{max-width:var(--container);margin:0 auto;padding:12px}
+
+.announcement {
+  background: #ffffff;
+  padding: 8px 0;
+  overflow: hidden;          /* מסתיר את הטקסט שחורג */
+  border-bottom: 1px solid #dfe6fb;
+}
+
+.ticker{
+  mask-image: linear-gradient(to left, transparent 0, black 40px, black calc(100% - 40px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, transparent 0, black 40px, black calc(100% - 40px), transparent 100%);
+}
+
+.ticker-track {
+  display: inline-flex;
+  gap: 3rem;                      /* רווח בין החזרות */
+  padding-inline: 40px;
+  will-change: transform;
+  animation: ticker-scroll 10s linear infinite;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: .3px;
+   white-space: nowrap; 
+}
+
+.ticker-track span {
+  white-space: nowrap;   /* ← חשוב כדי שהמשפט כולו יהיה שורה אחת */
+}
+
+/* אנימציה */
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* אם המשתמש הגדיר "הפחתת תנועה" במערכת */
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
+}
+
+@media (min-width: 900px) {
+  .ticker-track { font-size: 16px; }
+}
+
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* מפזר ימין–מרכז–שמאל */
+  padding: 12px 16px;
+  background: var(--bg);
+  position: relative;
+}
+
+.header-side {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 80px; /* שומר מקום כך שהלוגו יישאר באמצע */
+}
+
+.header-right {
+  justify-content: flex-start;
+}
+
+.header-left {
+  justify-content: flex-end;
+}
+
+.logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); /* מצמיד אותו תמיד לאמצע */
+  font-weight: 800;
+  font-size: 24px;
+  letter-spacing: 1px;
+  display: flex;
+  gap: 2px;
+}
+
+.logo-solid {
+  color: var(--accent);
+}
+
+.logo-outline {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--accent);
+  text-stroke: 2px var(--accent);
+}
+
+.icon {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+
+/* מעט עדינות בדסקטופ */
+@media (min-width:900px){
+  .logo{ font-size: 34px; letter-spacing: 1.5px; }
+  .logo-outline{ -webkit-text-stroke-width: 2.5px; text-stroke-width: 2.5px; }
+}
+.search{flex:1}
+.search input{
+  width:100%;border:1px solid #DDD;background:#FFF;padding:10px 12px;
+  border-radius:10px; color:var(--text);
+}
+.cart{position:relative;cursor:pointer; user-select:none}
+.badge{
+  position:absolute; top:-6px; inset-inline-start:-6px;
+  background:#D33; color:#FFF; font-size:11px; padding:2px 6px; border-radius:999px;
+}
+
+/* 4) Product Grid – Mobile: עמודה אחת */
+.grid {
+  display: grid;
+ grid-template-columns:repeat(2,1fr);  
+ gap:16px;
+}
+/* Card */
+.card{
+  background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow);
+  overflow:hidden; transition: transform .18s ease, box-shadow .18s ease;
+}
+.card:hover{ transform: translateY(-2px); box-shadow:var(--shadow-lg); }
+.card img{ width:100%; aspect-ratio:1/1; object-fit:cover; display:block; background:#F5F5F5 }
+.card .body{ padding:12px 14px }
+.title{ font-weight:700; margin-bottom:6px }
+.price{ color:var(--muted); font-weight:600 }
+.badge-new{
+  position:absolute; top:10px; inset-inline-start:10px; background:var(--accent); color:#fff;
+  padding:4px 8px; border-radius:999px; font-size:12px; box-shadow:var(--shadow-sm);
+}
+
+/* Buttons */
+.btn{
+  border:none; background:var(--accent); color:#fff; padding:10px 14px;
+  border-radius:12px; cursor:pointer; transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+}
+  .paybox-option {
+    border: 2px solid #06A9F4 !important;
+  }
+.btn:hover{ transform: translateY(-1px); box-shadow:var(--shadow-sm); }
+.btn:active{ transform: translateY(0); box-shadow:none; opacity:.95; }
+.btn.secondary{ background:transparent; color:var(--accent); border:1px solid var(--accent) }
+.actions{ display:flex; gap:8px; margin-top:10px }
+
+/* 5) Cart Sheet – Bottom Drawer (Mobile-First) */
+.sheet-backdrop{
+  position:fixed; inset:0; background:rgba(0,0,0,.40);
+  opacity:0; pointer-events:none; transition:.22s ease;
+}
+.sheet-backdrop.open{ opacity:1; pointer-events:auto }
+
+.sheet{
+  position:fixed; inset-inline:0; bottom:-100%;
+  background:var(--card);
+  border-top-left-radius:18px; border-top-right-radius:18px;
+  box-shadow:0 -10px 24px rgba(0,0,0,.15);
+  transition: bottom .25s ease;
+}
+.sheet.open{ bottom:0 }
+
+/* Handle (פס קטן בחלק העליון) */
+.sheet::before{
+  content:""; display:block; width:48px; height:5px; border-radius:999px;
+  background:#D9D9D9; margin:10px auto 0;
+}
+.sheet-header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:12px 16px; border-bottom:1px solid #EEE;
+}
+.sheet-body{ max-height:60vh; overflow:auto; padding:12px 16px }
+.item{ display:flex; gap:12px; align-items:center; padding:8px 0 }
+.item img{ width:72px; height:72px; object-fit:cover; border-radius:10px; background:#F5F5F5 }
+.qty input{ width:64px; padding:6px 8px; border:1px solid #DDD; border-radius:10px }
+.total{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:12px 16px; border-top:1px solid #EEE; position:sticky; bottom:0; background:var(--card);
+}
+
+/* 6) Footer */
+.footer{
+  margin:28px 0 12px; padding-top:12px; color:var(--muted);
+  text-align:center; border-top:1px solid #E6E6E6;
+}
+
+/* 7) Utilities */
+.hide-on-mobile{ display:none }
+.center{ display:flex; align-items:center; justify-content:center }
+
+.logo-img{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  height:40px;            /* מובייל */
+  object-fit:contain;
+}
+.header-side{ min-width: 88px; }
+
+/* =========================
+   Responsive – breakpoints
+   ========================= */
+
+/* Tablet ≥ 600px */
+@media (min-width:600px){
+  .logo{ font-size:24px }
+  .grid{ grid-template-columns:repeat(2,1fr); gap:16px }
+  .card .body{ padding:14px 16px }
+  .item img{ width:80px; height:80px }
+  .sheet-body{ max-height:65vh }
+}
+
+/* Desktop ≥ 900px */
+@media (min-width:900px){
+  .sp3d-container{ padding:16px }
+  .header{ gap:var(--gap-3) }
+  .logo{ font-size:26px; letter-spacing:.8px }
+  .grid{ grid-template-columns:repeat(2,1fr); gap:18px }
+  .card{ border-radius:var(--radius-lg) }
+  .card img{ aspect-ratio: 4/3 } /* יחס רחב יותר בדסקטופ – נראה “פרימיום” */
+  .badge{ top:-4px; inset-inline-start:-4px }
+  .sheet{ border-top-left-radius:22px; border-top-right-radius:22px }
+  .sheet-body{ max-height:58vh }
+  .logo-img {
+    height: 60px;     /* בדסקטופ */
+  }
+}
+
+/* Wide Desktop ≥ 1200px */
+@media (min-width:1200px){
+  .grid{ gap:20px }
+  .card img{ aspect-ratio: 3/2 }
+  .logo{ font-size:28px }
+}
+
+/* High-Contrast / Forced Colors – נגישות */
+@media (forced-colors: active){
+  .btn, .btn.secondary{ border: 1px solid ButtonText }
+  .badge, .badge-new{ forced-color-adjust: none; background: ButtonText; color: ButtonFace }
+}
+
